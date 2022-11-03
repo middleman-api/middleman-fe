@@ -1,4 +1,17 @@
-import { Location, RouteComponentProps, Router } from "@reach/router";
+import {
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalOverlay,
+} from "@chakra-ui/react";
+import {
+  Location,
+  RouteComponentProps,
+  Router,
+  RouterProps,
+  WindowLocation,
+} from "@reach/router";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import PrivateRoute from "./components/PrivateRoute";
 import DashboardContainer from "./container/DashboardContainer";
@@ -50,28 +63,73 @@ const routes: Route[] = [
   },
 ];
 
-const constructedRouteComponents = routes.map(generateRoute);
+const modalRoutes: Route[] = [
+  {
+    path: "/proxy/:proxyId",
+    component: Proxy,
+  },
+];
+
+const ConstructedRouteComponents = (props: RouterProps) => {
+  return (
+    <Router {...props}>
+      {routes.map(generateRoute)}
+      <NotFound default />
+    </Router>
+  );
+};
+
+const ConstructedModalRouteComponents = (props: RouterProps) => {
+  return (
+    <Router {...props}>
+      {modalRoutes.map(generateRoute)}
+      <NotFound default />
+    </Router>
+  );
+};
 
 const NotFound = ({}: RouteComponentProps) => <div>Sorry, nothing here.</div>;
+
+interface LocationState {
+  oldLocation?: WindowLocation | null;
+  type?: string | null;
+}
 
 const Routes = () => {
   return (
     <Location>
-      {({ location }) => (
-        <TransitionGroup>
-          <CSSTransition
-            key={location.key}
-            addEndListener={() => {
-              return false;
-            }}
-          >
-            <Router>
-              {constructedRouteComponents}
-              <NotFound default />
-            </Router>
-          </CSSTransition>
-        </TransitionGroup>
-      )}
+      {({ location, navigate }) => {
+        const { state } = location as WindowLocation<LocationState>;
+        const { oldLocation = null, type = "dialog" } = state || {};
+        console.log("location", { location, oldLocation });
+        return (
+          <>
+            <ConstructedRouteComponents
+              location={oldLocation !== null ? oldLocation : location}
+            />
+            <Modal
+              closeOnOverlayClick
+              isOpen={oldLocation !== null && type === "dialog"}
+              onClose={() => {
+                //@TODO: Fix Modal wouldn't close
+                navigate(oldLocation!.pathname, {
+                  state: {
+                    oldLocation: null,
+                  },
+                });
+              }}
+            >
+              <ModalOverlay />
+              <ModalContent>
+                <ModalCloseButton />
+                <ModalBody>
+                  <ConstructedModalRouteComponents location={location} />
+                </ModalBody>
+              </ModalContent>
+            </Modal>
+          </>
+        );
+      }}
     </Location>
   );
 };

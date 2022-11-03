@@ -64,6 +64,8 @@ const CommandPalette = ({ commands }: CommandPaletteProps) => {
       header={Header()}
       commands={commands}
       trigger={Trigger()}
+      closeOnSelect
+      resetInputOnOpen
     />
   );
 };

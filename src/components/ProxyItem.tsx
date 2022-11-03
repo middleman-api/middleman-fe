@@ -17,6 +17,7 @@ import { ClipboardDocumentIcon } from "@heroicons/react/24/solid";
 
 interface ProxyItemProps extends BoxProps {
   status?: "ACTIVE" | "ARCHIVED" | string;
+  id: string;
   title: string;
   targetUrl: string;
   proxyUrl: string;
@@ -59,13 +60,15 @@ const URLItem = ({
 
 const ProxyItem = ({
   status = "ARCHIVED",
+  id,
   title,
   targetUrl,
   proxyUrl,
   createdAt,
+  onClick,
 }: ProxyItemProps) => {
   return (
-    <Card>
+    <Card cursor={"pointer"} onClick={onClick}>
       <Box mb={"8px"}>
         {status === "ACTIVE" ? (
           <Badge colorScheme="green">Active</Badge>
@@ -81,7 +84,7 @@ const ProxyItem = ({
         <Divider orientation="vertical" h={"6px"} ml={"5px"} />
         <URLItem url={proxyUrl} />
       </Box>
-      <Text fontSize={"10px"} color="gray.400">
+      <Text fontSize={"10px"} color="gray.400" ml={"auto"}>
         {createdAt}
       </Text>
     </Card>

@@ -47,7 +47,11 @@ const DashboardContainer = ({ children }: DashboardContainerProps) => {
   return (
     <Flex direction={"column"}>
       <NavBar />
-      <Flex direction={"row"}>
+      <Flex
+        direction={"row"}
+        bgColor={"blackAlpha.50"}
+        minH={"calc(100vh - 72px)"}
+      >
         <Container maxW={"924px"} py={"32px"} px={"16px"}>
           {children}
         </Container>

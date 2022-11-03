@@ -11,7 +11,7 @@ const PrivateRoute = ({
   redirectPath = "/login",
 }: PrivateRouteProps) => {
   const user = true;
-  if (!user) return <Redirect to={redirectPath} replace />;
+  if (!user) return <Redirect to={redirectPath} replace noThrow />;
   return React.cloneElement(children);
 };
 
