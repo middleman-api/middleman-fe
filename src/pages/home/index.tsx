@@ -1,12 +1,8 @@
 import ProxyItem from "@/components/ProxyItem";
 import { Box, Flex, Grid, GridItem, SimpleGrid } from "@chakra-ui/react";
-import { RouteComponentProps } from "@reach/router";
+import { Outlet } from "react-router";
 
-interface HomeProps extends RouteComponentProps {
-  user: any;
-}
-
-const Home = ({}: HomeProps) => {
+const Home = () => {
   const handleClick = (id: string, title: string) => {
     console.log(id, title);
   };
@@ -34,6 +30,7 @@ const Home = ({}: HomeProps) => {
           );
         })}
       </SimpleGrid>
+      <Outlet />
     </Box>
   );
 };

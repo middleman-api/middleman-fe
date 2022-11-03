@@ -1,18 +1,13 @@
-import { Redirect, RouteComponentProps } from "@reach/router";
-import React from "react";
+import { Navigate, Outlet } from "react-router-dom";
 
-interface PrivateRouteProps extends RouteComponentProps {
-  children: any;
+interface PrivateRouteProps {
   redirectPath?: string;
 }
 
-const PrivateRoute = ({
-  children,
-  redirectPath = "/login",
-}: PrivateRouteProps) => {
+const PrivateRoute = ({ redirectPath = "/login" }: PrivateRouteProps) => {
   const user = true;
-  if (!user) return <Redirect to={redirectPath} replace noThrow />;
-  return React.cloneElement(children);
+  if (!user) return <Navigate to={redirectPath} replace />;
+  return <Outlet />;
 };
 
 export default PrivateRoute;

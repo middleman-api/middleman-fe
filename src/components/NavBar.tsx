@@ -1,8 +1,8 @@
 import { UpDownIcon } from "@chakra-ui/icons";
 import { Button, Flex, Icon } from "@chakra-ui/react";
 import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/solid";
-import { useLocation, useNavigate } from "@reach/router";
 import { Command } from "react-command-palette";
+import { useLocation, useNavigate } from "react-router";
 import CommandPalette from "./CommandPalette";
 
 const NavBar = () => {
@@ -15,7 +15,7 @@ const NavBar = () => {
       name: "New Proxy app",
       command() {
         //@TODO: Fix modal doesn't open with route change
-        navigate("/proxy/1", {
+        navigate("/create-proxy", {
           state: {
             oldLocation: JSON.parse(JSON.stringify(location)),
           },

@@ -1,10 +1,8 @@
 import { Box, Container, Flex, VStack } from "@chakra-ui/react";
-import { RouteComponentProps } from "@reach/router";
 import NavBar from "@/components/NavBar";
+import { Outlet } from "react-router";
 
-interface DashboardContainerProps extends RouteComponentProps {
-  children: JSX.Element[];
-}
+interface DashboardContainerProps {}
 
 const sideMenu = [
   {
@@ -43,7 +41,7 @@ const SideBar = () => {
   );
 };
 
-const DashboardContainer = ({ children }: DashboardContainerProps) => {
+const DashboardContainer = ({}: DashboardContainerProps) => {
   return (
     <Flex direction={"column"}>
       <NavBar />
@@ -53,7 +51,7 @@ const DashboardContainer = ({ children }: DashboardContainerProps) => {
         minH={"calc(100vh - 72px)"}
       >
         <Container maxW={"924px"} py={"32px"} px={"16px"}>
-          {children}
+          <Outlet />
         </Container>
       </Flex>
     </Flex>
