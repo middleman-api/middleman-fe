@@ -15,6 +15,7 @@ const Home = () => {
           return (
             <ProxyItem
               key={id}
+              tabIndex={i}
               status={"ACTIVE"}
               id={id}
               title={title}

@@ -11,8 +11,8 @@ const NavBar = () => {
   const commands: Command[] = [
     {
       id: 1,
-      color: "default",
-      name: "New Proxy app",
+      color: "command",
+      name: "Create new proxy app",
       command() {
         navigate("/create-proxy", {
           state: {
@@ -23,7 +23,7 @@ const NavBar = () => {
     },
     {
       id: 2,
-      color: "default",
+      color: "not functional",
       name: "Go to app",
       command() {},
     },

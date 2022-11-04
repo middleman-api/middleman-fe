@@ -38,6 +38,7 @@ const RoutedModal = ({ navigateTo }: { navigateTo?: string }) => {
   };
   return (
     <Modal
+      isCentered
       closeOnEsc
       closeOnOverlayClick={false}
       isOpen={true}
