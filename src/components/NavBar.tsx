@@ -14,10 +14,9 @@ const NavBar = () => {
       color: "default",
       name: "New Proxy app",
       command() {
-        //@TODO: Fix modal doesn't open with route change
         navigate("/create-proxy", {
           state: {
-            oldLocation: JSON.parse(JSON.stringify(location)),
+            background: JSON.parse(JSON.stringify(location)),
           },
         });
       },
