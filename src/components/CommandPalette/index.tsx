@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Flex,
+  Icon,
   Input,
   InputGroup,
   InputRightElement,
@@ -54,14 +55,29 @@ function RenderCommand(suggestion: Command) {
   // A suggestion object will be passed to your custom component for each command
   const { id, color, name } = suggestion;
   return (
-    <Flex justifyContent={"space-between"}>
-      <Flex>
-        <Text mr={"4px"}>{">"}</Text>
+    <Flex justifyContent={"space-between"} alignItems={"center"}>
+      <Flex alignItems={"center"}>
         <Text>{name}</Text>
       </Flex>
-      <Text fontStyle={"italic"} fontWeight={400}>
-        {color}
-      </Text>
+      <Flex alignItems={"center"} gap={"4px"}>
+        <Text fontStyle={"italic"} fontWeight={400}>
+          {color}
+        </Text>
+        <Icon mr={"4px"} transform={"rotate(0deg)"}>
+          <svg strokeWidth="2px" viewBox="0 0 20 20" className="css-l5oww">
+            <g
+              stroke="currentColor"
+              fill="none"
+              fillRule="evenodd"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M18 3v4c0 2-2 4-4 4H2"></path>
+              <path d="M8 17l-6-6 6-6"></path>
+            </g>
+          </svg>
+        </Icon>
+      </Flex>
     </Flex>
   );
 }

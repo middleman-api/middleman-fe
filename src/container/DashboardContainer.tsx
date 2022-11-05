@@ -1,6 +1,7 @@
 import { Box, Container, Flex, VStack } from "@chakra-ui/react";
 import NavBar from "@/components/NavBar";
 import { Outlet } from "react-router";
+import Footer from "@/components/Footer";
 
 interface DashboardContainerProps {}
 
@@ -48,12 +49,13 @@ const DashboardContainer = ({}: DashboardContainerProps) => {
       <Flex
         direction={"row"}
         bgColor={"blackAlpha.50"}
-        minH={"calc(100vh - 72px)"}
+        minH={"calc(100vh - 144px)"}
       >
         <Container maxW={"924px"} py={"32px"} px={"16px"}>
           <Outlet />
         </Container>
       </Flex>
+      <Footer />
     </Flex>
   );
 };

@@ -23,14 +23,13 @@ const NavBar = () => {
     },
     {
       id: 2,
-      color: "not functional",
+      color: "command",
       name: "Go to app",
       command() {},
     },
   ];
   return (
     <Flex
-      w={"100vw"}
       p={"16px 24px"}
       alignItems={"center"}
       justifyContent={"space-between"}

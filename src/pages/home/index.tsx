@@ -1,11 +1,15 @@
 import ProxyItem from "@/components/ProxyItem";
 import { Box, Flex, Grid, GridItem, SimpleGrid } from "@chakra-ui/react";
-import { Outlet } from "react-router";
+import { Outlet, useNavigate } from "react-router";
 
 const Home = () => {
+  const navigate = useNavigate();
+
   const handleClick = (id: string, title: string) => {
-    console.log(id, title);
+    // navigate to proxy details page
+    navigate(`/proxy/${id}?${new URLSearchParams({ title })}`);
   };
+
   return (
     <Box>
       <SimpleGrid columns={{ sm: 2, md: 3 }} spacing="8">
