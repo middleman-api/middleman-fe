@@ -1,22 +1,12 @@
-import {
-  Drawer,
-  DrawerBody,
-  DrawerCloseButton,
-  DrawerContent,
-  DrawerOverlay,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalOverlay,
-} from "@chakra-ui/react";
-import { Outlet, Route, Routes, useLocation, useNavigate } from "react-router";
+import { Route, Routes, useLocation } from "react-router";
 import CreateProxy from "./components/CreateProxy";
 import PrivateRoute from "./components/PrivateRoute";
 import RoutedDrawer from "./components/RoutedDrawer";
 import RoutedModal from "./components/RoutedModal";
 import DashboardContainer from "./container/DashboardContainer";
+import PublicContainer from "./container/PublicContainer";
 import Home from "./pages/home";
+import Login from "./pages/Login";
 import Proxy from "./pages/proxy";
 
 const NotFound = ({}) => <div>Sorry, nothing here.</div>;
@@ -30,6 +20,9 @@ const Router = () => {
   return (
     <>
       <Routes location={background || location}>
+        <Route element={<PublicContainer />}>
+          <Route path="/login" element={<Login />} />
+        </Route>
         <Route element={<PrivateRoute />}>
           <Route element={<DashboardContainer />}>
             <Route path="/" element={<Home />} />

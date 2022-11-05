@@ -5,7 +5,7 @@ interface PrivateRouteProps {
 }
 
 const PrivateRoute = ({ redirectPath = "/login" }: PrivateRouteProps) => {
-  const user = true;
+  const user = false;
   if (!user) return <Navigate to={redirectPath} replace />;
   return <Outlet />;
 };
