@@ -7,6 +7,7 @@ import {
   Container,
   Drawer,
   DrawerBody,
+  DrawerCloseButton,
   DrawerContent,
   DrawerHeader,
   DrawerOverlay,
@@ -15,8 +16,13 @@ import {
   Icon,
   IconButton,
   Input,
+  Tab,
   Table,
   TableContainer,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
   Tbody,
   Td,
   Tfoot,
@@ -126,12 +132,27 @@ const Proxy = () => {
         placement={"bottom"}
         onClose={() => setExpandedRow(undefined)}
         isOpen={!!expandedRow}
+        size={"full"}
       >
         <DrawerOverlay />
         <DrawerContent>
+          <DrawerCloseButton />
           <DrawerHeader borderBottomWidth="1px">Expand view</DrawerHeader>
           <DrawerBody>
-            <pre>{JSON.stringify(expandedRow, null, 4)}</pre>
+            <Tabs variant="soft-rounded" colorScheme="teal">
+              <TabList>
+                <Tab>Response</Tab>
+                <Tab>Headers</Tab>
+              </TabList>
+              <TabPanels>
+                <TabPanel>
+                  <pre>{JSON.stringify(expandedRow, null, 4)}</pre>
+                </TabPanel>
+                <TabPanel>
+                  <pre>{JSON.stringify(expandedRow, null, 4)}</pre>
+                </TabPanel>
+              </TabPanels>
+            </Tabs>
           </DrawerBody>
         </DrawerContent>
       </Drawer>
