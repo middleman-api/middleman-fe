@@ -4,10 +4,12 @@ import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/solid";
 import { Command } from "react-command-palette";
 import { useLocation, useNavigate } from "react-router";
 import CommandPalette from "./CommandPalette";
+import { useAuth } from "../hooks";
 
 const NavBar = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const logout = useAuth((state) => state.logout);
   const commands: Command[] = [
     {
       id: 1,
@@ -46,6 +48,7 @@ const NavBar = () => {
         <Button
           variant="ghost"
           rightIcon={<Icon as={ArrowRightOnRectangleIcon} />}
+          onClick={logout}
         >
           Logout
         </Button>

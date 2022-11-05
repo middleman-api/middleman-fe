@@ -11,10 +11,12 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Field, Formik } from "formik";
+import { useAuth } from "../../hooks";
 import { useNavigate } from "react-router";
 
 const Login = () => {
   const navigate = useNavigate();
+  const login = useAuth((state) => state.login);
   return (
     <Flex alignItems={"center"} justifyContent={"center"}>
       <Card w={["100%", "50%"]}>
@@ -29,6 +31,7 @@ const Login = () => {
             initialValues={{ email: "", password: "" }}
             validationSchema={loginSchema}
             onSubmit={(values, { setSubmitting }) => {
+              login({});
               setTimeout(() => {
                 setSubmitting(false);
                 navigate("/");

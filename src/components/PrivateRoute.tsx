@@ -1,3 +1,4 @@
+import { useAuth } from "../hooks";
 import { Navigate, Outlet } from "react-router-dom";
 
 interface PrivateRouteProps {
@@ -5,7 +6,7 @@ interface PrivateRouteProps {
 }
 
 const PrivateRoute = ({ redirectPath = "/login" }: PrivateRouteProps) => {
-  const user = false;
+  const user = useAuth((state) => state.user);
   if (!user) return <Navigate to={redirectPath} replace />;
   return <Outlet />;
 };
