@@ -19,7 +19,7 @@ const Home = () => {
           return (
             <ProxyItem
               key={id}
-              tabIndex={i}
+              tabIndex={i + 1}
               status={"ACTIVE"}
               id={id}
               title={title}
@@ -30,7 +30,6 @@ const Home = () => {
               boxShadow="sm"
               p="6"
               rounded="md"
-              bg="tomato"
             />
           );
         })}

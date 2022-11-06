@@ -66,9 +66,10 @@ const ProxyItem = ({
   proxyUrl,
   createdAt,
   onClick,
+  ...props
 }: ProxyItemProps) => {
   return (
-    <Card cursor={"pointer"} onClick={onClick}>
+    <Card cursor={"pointer"} onClick={onClick} {...props}>
       <Box mb={"8px"}>
         {status === "ACTIVE" ? (
           <Badge colorScheme="green">Active</Badge>
