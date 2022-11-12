@@ -1,11 +1,11 @@
 import * as yup from "yup";
 
 const loginSchema = yup.object().shape({
-  email: yup
+  username: yup
     .string()
     .email("Please enter a valid email")
     .required("Email is required"),
-  password: yup.string().min(6).required(),
+  password_hash: yup.string().min(6).required(),
 });
 
 export default loginSchema;

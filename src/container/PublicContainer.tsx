@@ -1,5 +1,4 @@
 import Footer from "@/components/Footer";
-import NavBar from "@/components/NavBar";
 import { UpDownIcon } from "@chakra-ui/icons";
 import { Container, Flex, Icon } from "@chakra-ui/react";
 import { Outlet } from "react-router";
@@ -27,7 +26,7 @@ const PublicContainer = ({}) => {
       <PublicNavBar />
       <Flex
         direction={"row"}
-        bgColor={"blackAlpha.50"}
+        bgColor={"blackAlpha.100"}
         minH={"calc(100vh - 144px)"}
       >
         <Container maxW={"924px"} py={"32px"} px={"16px"}>

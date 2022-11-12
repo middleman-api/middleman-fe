@@ -1,23 +1,11 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
-    // "paths": {
-    //   "@/components/*": [
-    //     "./components/*"
-    //   ],
-    //   "@/pages/*": [
-    //     "./pages/*"
-    //   ],
-    //   "@/containers/*": [
-    //     "./containers/*"
-    //   ],
-    //   "@/utils/*": [
-    //     "./utils/*"
-    //   ],
-    //   "@/schemas/*": [
-    //     "./schemas/*"
-    //   ],
-    // },
+    "baseUrl": "src",
+    "paths": {
+      "@/*": [
+        "*"
+      ]
+    },
     "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": [

@@ -1,13 +1,14 @@
 import { Route, Routes, useLocation } from "react-router";
-import CreateProxy from "./components/CreateProxy";
-import PrivateRoute from "./components/PrivateRoute";
-import RoutedDrawer from "./components/RoutedDrawer";
-import RoutedModal from "./components/RoutedModal";
-import DashboardContainer from "./container/DashboardContainer";
-import PublicContainer from "./container/PublicContainer";
-import Home from "./pages/home";
-import Login from "./pages/Login";
-import Proxy from "./pages/proxy";
+import CreateProxy from "@/components/CreateProxy";
+import PrivateRoute from "@/components/PrivateRoute";
+import RoutedDrawer from "@/components/RoutedDrawer";
+import RoutedModal from "@/components/RoutedModal";
+import DashboardContainer from "@/container/DashboardContainer";
+import PublicContainer from "@/container/PublicContainer";
+import Home from "@/pages/home";
+import Login from "@/pages/auth/Login";
+import Proxy from "@/pages/proxy";
+import SignUp from "@/pages/auth/SignUp";
 
 const NotFound = ({}) => <div>Sorry, nothing here.</div>;
 
@@ -22,6 +23,7 @@ const Router = () => {
       <Routes location={background || location}>
         <Route element={<PublicContainer />}>
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
         </Route>
         <Route element={<PrivateRoute />}>
           <Route element={<DashboardContainer />}>

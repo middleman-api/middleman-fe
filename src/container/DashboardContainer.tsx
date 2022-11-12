@@ -48,7 +48,7 @@ const DashboardContainer = ({}: DashboardContainerProps) => {
       <NavBar />
       <Flex
         direction={"row"}
-        bgColor={"blackAlpha.50"}
+        bgColor={"blackAlpha.100"}
         minH={"calc(100vh - 144px)"}
       >
         <Container maxW={"924px"} py={"32px"} px={"16px"}>

@@ -1,9 +1,12 @@
+import { User } from "@/models/user-model";
 import create from "zustand";
 import { devtools, persist } from "zustand/middleware";
 
 interface AuthState {
-  user: any;
-  login: (user: any) => void;
+  user: User | undefined;
+  token: string | undefined;
+  login: (user: User) => void;
+  setToken: (token: string) => void;
   logout: () => void;
 }
 
@@ -12,7 +15,9 @@ const useAuth = create<AuthState>()(
     persist(
       (set) => ({
         user: undefined,
-        login: (user: any) => set((state) => ({ user })),
+        token: undefined,
+        login: (user: User) => set((state) => ({ ...state, user })),
+        setToken: (token: string) => set((state) => ({ ...state, token })),
         logout: () => set({ user: undefined }),
       }),
       { name: "auth" }
