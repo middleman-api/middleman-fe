@@ -31,8 +31,12 @@ const SignUp = () => {
     try {
       const { data: createdUser } = await createUser(payload);
       login(createdUser);
-      const { data: token } = await generateToken(payload);
+      const { data: token } = await generateToken({
+        username: payload.username,
+        password: payload.password_hash,
+      });
       setToken(token);
+      navigate("/");
     } catch (e) {
       toast({
         title: "Something went wrong while signing you up.",
@@ -63,10 +67,7 @@ const SignUp = () => {
             validationSchema={loginSchema}
             onSubmit={async (values, { setSubmitting }) => {
               await handleSignUp(values);
-              setTimeout(() => {
-                setSubmitting(false);
-                navigate("/");
-              }, 500);
+              setSubmitting(false);
             }}
           >
             {({ errors, touched, isSubmitting, handleSubmit }) => {

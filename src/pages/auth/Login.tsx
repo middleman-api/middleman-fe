@@ -27,10 +27,14 @@ const Login = () => {
 
   const handleLogin = async (payload: UserBasic) => {
     try {
-      const { data: token } = await generateToken(payload);
+      const { data: token } = await generateToken({
+        username: payload.username,
+        password: payload.password_hash,
+      });
       setToken(token);
       const { data: user } = await getCurrentUser();
       login(user);
+      navigate("/");
     } catch (e) {
       toast({
         title: "Something went wrong while logging you in.",
@@ -61,10 +65,7 @@ const Login = () => {
             validationSchema={loginSchema}
             onSubmit={async (values, { setSubmitting }) => {
               await handleLogin(values);
-              setTimeout(() => {
-                setSubmitting(false);
-                navigate("/");
-              }, 500);
+              setSubmitting(false);
             }}
           >
             {({ errors, touched, isSubmitting, handleSubmit }) => {

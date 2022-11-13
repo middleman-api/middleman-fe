@@ -1,3 +1,4 @@
+import { useAuth } from "@/hooks";
 import axios from "axios";
 
 const api = axios.create({
@@ -6,9 +7,15 @@ const api = axios.create({
 });
 
 // Add a request interceptor
-axios.interceptors.request.use(
+api.interceptors.request.use(
   function (config) {
-    // Do something before request is sent
+    const token = useAuth.getState().token;
+    if (token) {
+      config.headers = {
+        ...config.headers,
+        Authorization: `${token.token_type} ${token.access_token}`,
+      };
+    }
     return config;
   },
   function (error) {
@@ -18,7 +25,7 @@ axios.interceptors.request.use(
 );
 
 // Add a response interceptor
-axios.interceptors.response.use(
+api.interceptors.response.use(
   function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
